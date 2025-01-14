@@ -1,10 +1,10 @@
-import TextFiled from "@/common/TextFiled";
+import TextField from "@/common/TextField";
 
-function SendOTPForm({ phoneNumber, onChange, onSubmit }) {
+function SendOTPFrom({ phoneNumber, onChange, onSubmit }) {
   return (
     <div>
-      <form className="space-y-5" onSubmit={onSubmit}>
-        <TextFiled
+      <form className="space-y-10" onSubmit={onSubmit}>
+        <TextField
           label="شماره موبایل"
           name="phoneNumber"
           value={phoneNumber}
@@ -18,4 +18,4 @@ function SendOTPForm({ phoneNumber, onChange, onSubmit }) {
   );
 }
 
-export default SendOTPForm;
+export default SendOTPFrom;

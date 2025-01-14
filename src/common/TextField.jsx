@@ -1,4 +1,4 @@
-function TextFiled({ label, name, value, onChange }) {
+function TextField({ label, name, value, onChange }) {
   return (
     <div>
       <label htmlFor={name} className="block mb-4">
@@ -17,4 +17,4 @@ function TextFiled({ label, name, value, onChange }) {
   );
 }
 
-export default TextFiled;
+export default TextField;

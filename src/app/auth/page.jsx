@@ -20,8 +20,8 @@ function AuthPage() {
   const sendOtpHandler = async (e) => {
     e.preventDefault();
     try {
-      const data = await mutateAsync({phoneNumber});
-      toast.success(data.data);
+      const data = await mutateAsync({ phoneNumber });
+      toast.success(data.message);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -33,6 +33,7 @@ function AuthPage() {
           phoneNumber={phoneNumber}
           onChange={phoneNumberHandler}
           onSubmit={sendOtpHandler}
+          isLoading={isLoading}
         />
       </div>
     </div>

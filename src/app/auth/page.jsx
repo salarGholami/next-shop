@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import SendOTPFrom from "./SendOTPForm";
 import { useMutation } from "@tanstack/react-query";
 import { checkOTP, getOTP } from "@/services/authServices";
 import CheckOTPForm from "./CheckOTPForm";
 
+const RESEND_TIME = 90;
+
 function AuthPage() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("09389525194");
   const [otp, setOtp] = useState("");
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
+  const [time, setTime] = useState(RESEND_TIME);
+
   const {
     data,
     error,
@@ -34,6 +38,7 @@ function AuthPage() {
       const data = await mutedGetOtp({ phoneNumber });
       toast.success(data.message);
       setStep(2);
+      setTime(RESEND_TIME);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -50,6 +55,17 @@ function AuthPage() {
     }
   };
 
+  useEffect(() => {
+    const timer =
+      time > 0 &&
+      setInterval(() => {
+        setTime((s) => s - 1);
+      }, 1000);
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [time]);
+
   const renderSteps = () => {
     switch (step) {
       case 1:
@@ -63,7 +79,14 @@ function AuthPage() {
         );
       case 2:
         return (
-          <CheckOTPForm otp={otp} setOtp={setOtp} onSubmit={checkOtpHandler} />
+          <CheckOTPForm
+            onBack={() => setStep((s) => s - 1)}
+            otp={otp}
+            setOtp={setOtp}
+            onSubmit={checkOtpHandler}
+            time={time}
+            onResendCode={sendOtpHandler}
+          />
         );
 
       default:

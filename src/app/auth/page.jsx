@@ -16,7 +16,7 @@ function AuthPage() {
   const [time, setTime] = useState(RESEND_TIME);
 
   const {
-    data,
+    data: otpResponse,
     error,
     isLoading,
     mutateAsync: mutedGetOtp,
@@ -39,6 +39,7 @@ function AuthPage() {
       toast.success(data.message);
       setStep(2);
       setTime(RESEND_TIME);
+      setOtp("");
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -86,6 +87,7 @@ function AuthPage() {
             onSubmit={checkOtpHandler}
             time={time}
             onResendCode={sendOtpHandler}
+            otpResponse={otpResponse}
           />
         );
 

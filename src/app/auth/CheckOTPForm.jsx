@@ -10,6 +10,7 @@ function CheckOTPForm({
   onBack,
   time,
   onResendCode,
+  isCheckingOtp,
 }) {
   return (
     <div>
@@ -49,9 +50,15 @@ function CheckOTPForm({
           containerStyle="flex flex-row-reverse gap-x-2 justify-center"
           renderInput={(props) => <input type="number" {...props} />}
         />
-        <button type="submit" className="btn btn--primary w-full">
-          تایید
-        </button>
+        <div>
+          {isCheckingOtp ? (
+            <p>loading ...</p>
+          ) : (
+            <button type="submit" className="btn btn--primary w-full">
+              تایید
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

@@ -17,12 +17,22 @@ function Header() {
         <ul className="flex items-center justify-between py-2 container xl:max-w-screen-xl">
           <li>
             <Link className="block py-2" href="/">
-              خانه
+              خانه 
             </Link>
           </li>
           <li>
             <Link className="block py-2" href="/products">
               محصولات
+            </Link>
+          </li>
+          <li>
+            <Link className="block py-2" href="/profile">
+              پنل کاربر
+            </Link>
+          </li>
+          <li>
+            <Link className="block py-2" href="/admin">
+              پنل ادمین
             </Link>
           </li>
           <li>
@@ -37,7 +47,7 @@ function Header() {
               <Link className="block py-2" href="/auth">
                 ورود
               </Link>
-            )}
+            )} 
           </li>
         </ul>
       </nav>

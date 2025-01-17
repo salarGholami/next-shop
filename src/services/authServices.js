@@ -1,10 +1,10 @@
 import http from "./httpService";
 
-export function getOTP(data) {
+export function getOtp(data) {
   return http.post("/user/get-otp", data).then(({ data }) => data.data);
 }
 
-export function checkOTP(data) {
+export function checkOtp(data) {
   return http.post("/user/check-otp", data).then(({ data }) => data.data);
 }
 

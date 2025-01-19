@@ -23,5 +23,4 @@ function SendOTPFrom({ phoneNumber, onChange, onSubmit, isLoading }) {
     </div>
   );
 }
-
 export default SendOTPFrom;

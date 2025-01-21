@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/common/Loading";
 import TextField from "@/common/TextField";
 import { useGetUser } from "@/hooks/useAuth";
 import { includeObj } from "@/utils/objectUtils";
@@ -16,15 +17,14 @@ function MePage() {
     if (user) setFormData(includeObj(user, includeskey));
   }, [user]);
 
-  if (isLoading) return <p>loading...</p>;
-  console.log(formData);
-
   const labels = {
     name: "نام کاربری",
     email: "ایمیل",
     phoneNumber: "شماره تلفن",
     biography: "بیوگرافی",
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="max-w-sm">

@@ -1,6 +1,7 @@
 "use client";
 
 import Loading from "@/common/Loaing";
+import Loading from "@/common/Loading";
 import TextField from "@/common/TextField";
 import { useGetUser } from "@/hooks/useAuth";
 import { includeObj } from "@/utils/objectUtils";
@@ -26,6 +27,8 @@ function MePage() {
     phoneNumber: "شماره تلفن",
     biography: "بیوگرافی",
   };
+
+  if (isLoading) return <Loading />;
 
   return (
     <div className="max-w-sm">

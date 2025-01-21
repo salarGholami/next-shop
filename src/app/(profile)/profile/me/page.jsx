@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/common/Loaing";
 import TextField from "@/common/TextField";
 import { useGetUser } from "@/hooks/useAuth";
 import { includeObj } from "@/utils/objectUtils";
@@ -16,7 +17,7 @@ function MePage() {
     if (user) setFormData(includeObj(user, includeskey));
   }, [user]);
 
-  if (isLoading) return <p>loading...</p>;
+  if (isLoading) return <Loading />;
   console.log(formData);
 
   const labels = {

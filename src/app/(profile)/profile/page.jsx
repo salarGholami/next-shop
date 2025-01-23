@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/common/Loaing";
+import Loading from "@/common/Loading";
 import { useGetUser } from "@/hooks/useAuth";
 import { toLocalDateString } from "@/utils/toLocalDate";
 

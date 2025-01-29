@@ -1,5 +1,5 @@
-import ProductsFilter from "../ProductsFilter";
-import ProductSort from "../ProductSort";
+import ProductsFilter from "./ProductsFilter";
+import ProductSort from "./ProductSort";
 
 function CategorySidebar({ categories }) {
   return (

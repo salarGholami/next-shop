@@ -3,6 +3,7 @@ import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
+import AddToCart from "./AddToCart";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -30,7 +31,7 @@ async function page({ params }) {
           </div>
         </div>
       )}
-      <div className="btn btn--primary max-w-xs text-center py-2">اضافه کردن به سبد خرید</div>
+      <AddToCart product={product} />
     </div>
   );
 }

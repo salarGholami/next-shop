@@ -36,7 +36,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link className="block py-2" href="/cards">
+            <Link className="block py-2" href="/cart">
               سبد خرید - ({cart ? cart.payDetail.productIds.length : 0})
             </Link>
           </li>

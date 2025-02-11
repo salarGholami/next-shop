@@ -50,7 +50,7 @@ function ProductSort() {
 
   return (
     <div>
-      <p className="font-bold mb-4">مرتب سازی</p>
+      <p className="font-bold mb-1.5">مرتب سازی</p>
       {sortOptions.map((item) => {
         return (
           <RadioInput

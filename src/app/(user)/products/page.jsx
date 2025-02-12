@@ -5,12 +5,20 @@ import queryString from "query-string";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
 import Link from "next/link";
 import AddToCart from "./[slug]/AddToCart";
+import LikeProduct from "./likeProduct";
+import { cookies } from "next/dist/client/components/headers";
+import { toStringCookies } from "@/utils/toStingCookies";
 export const dynamic = "force-dynamic"; // eq to {cache:"no-store"} or SSR in pages Dir.
 
 async function Products({ searchParams }) {
   // const { products } = await getProducts(queryString.stringify(searchParams));
   // const { categories } = await getCategories();
-  const productsPromise = getProducts(queryString.stringify(searchParams));
+  const cookieStore = cookies();
+  const strCookies = toStringCookies(cookieStore);
+  const productsPromise = getProducts(
+    queryString.stringify(searchParams),
+    strCookies
+  );
   const categoryPromise = getCategories();
   const [{ products }, { categories }] = await Promise.all([
     productsPromise,
@@ -42,7 +50,8 @@ async function Products({ searchParams }) {
                 >
                   مشاهده محصول
                 </Link>
-                <AddToCart product={product}/>
+                <LikeProduct product={product} />
+                <AddToCart product={product} />
               </div>
             );
           })}

@@ -1,3 +1,5 @@
+import { toPersianNumbersWithComma } from "@/utils/toPersianNumbers";
+
 function CartSummary({ payDetail }) {
   const { totalOffAmount, totalPrice, totalGrossPrice } = payDetail;
 
@@ -6,15 +8,15 @@ function CartSummary({ payDetail }) {
       <p className="mb-4 font-bold">اطلاعات پرداخت</p>
       <div className="mb-4 flex items-center justify-between">
         <span>جمع کل</span>
-        <span>{totalGrossPrice}</span>
+        <span>{toPersianNumbersWithComma(totalGrossPrice)}</span>
       </div>
       <div className="mb-4 flex items-center justify-between">
         <span>تخفیف </span>
-        <span>{totalOffAmount}</span>
+        <span>{toPersianNumbersWithComma(totalOffAmount)}</span>
       </div>
       <div className="mb-6 flex items-center justify-between font-bold">
         <span>مبلغ قابل پرداخت</span>
-        <span>{totalPrice}</span>
+        <span>{toPersianNumbersWithComma(totalPrice)}</span>
       </div>
       <button className="btn btn--primary w-full">ثبت سفارش</button>
     </div>

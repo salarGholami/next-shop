@@ -12,7 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirFont.variable} font-sans`}>
+      <body
+        suppressContentEditableWarning={true}
+        className={`${vazirFont.variable} font-sans`}
+      >
         <Providers>
           <Toaster />
           <div className="grid grid-cols-4 bg-white h-screen">

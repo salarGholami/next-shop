@@ -35,7 +35,7 @@ function ProductListTable({ products }) {
                   {toPersianNumbersWithComma(product.price)}
                 </td>
                 <td className="table__td">
-                  {toPersianNumbers(product.discount)}
+                 % {toPersianNumbers(product.discount)}
                 </td>
                 <td className="table__td">
                   {toPersianNumbersWithComma(product.offPrice)}

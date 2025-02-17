@@ -6,8 +6,25 @@ import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
+import { useRemoveProduct } from "@/hooks/useProducts";
+import toast from "react-hot-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 function ProductListTable({ products }) {
+  const queryClient = useQueryClient();
+
+  const { mutateAsync } = useRemoveProduct();
+
+  const removeProductHandler = async (id) => {
+    try {
+      const { message } = await mutateAsync(id);
+      toast.success(message);
+      queryClient.invalidateQueries({ queryKey: ["get-products"] });
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+
   return (
     <div className="shadow-sm overflow-auto my-8">
       <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
@@ -35,7 +52,7 @@ function ProductListTable({ products }) {
                   {toPersianNumbersWithComma(product.price)}
                 </td>
                 <td className="table__td">
-                 % {toPersianNumbers(product.discount)}
+                  % {toPersianNumbers(product.discount)}
                 </td>
                 <td className="table__td">
                   {toPersianNumbersWithComma(product.offPrice)}
@@ -48,7 +65,7 @@ function ProductListTable({ products }) {
                     <Link href={`/admin/products/${product._id}`}>
                       <HiEye className="text-primary-900 w-5 h-5" />
                     </Link>
-                    <button>
+                    <button onClick={() => removeProductHandler(product._id)}>
                       <HiTrash className="text-rose-600 w-5 h-5" />
                     </button>
                     <Link href={`/admin/products/edit/${product._id}`}>
@@ -64,4 +81,5 @@ function ProductListTable({ products }) {
     </div>
   );
 }
+
 export default ProductListTable;

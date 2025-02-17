@@ -2,6 +2,7 @@ import {
   addProduct,
   getOneProdcutById,
   getProducts,
+  removeProduct,
   updateProduct,
 } from "@/services/productService";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -29,3 +30,7 @@ export const useGetProductById = (id) =>
     retry: false,
     refetchOnWindowFocus: true,
   });
+
+export const useRemoveProduct = () => {
+  return useMutation({ mutationFn: removeProduct });
+};

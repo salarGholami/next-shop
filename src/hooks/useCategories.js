@@ -2,6 +2,7 @@ import {
   addNewCategory,
   getCategories,
   getCategoryById,
+  removeCategory,
   updateCategory,
 } from "@/services/categoryService";
 
@@ -27,3 +28,7 @@ export const useGetCategoryById = (id) =>
 
 export const useUpdateCategory = () =>
   useMutation({ mutationFn: updateCategory });
+
+export const useRemoveCategory = () => {
+  return useMutation({ mutationFn: removeCategory });
+};

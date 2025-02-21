@@ -4,7 +4,14 @@ import RadioInput from "@/common/RadioInput";
 import TextField from "@/common/TextField";
 import { useGetProducts } from "@/hooks/useProducts";
 import { useState } from "react";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
 import Select from "react-select";
+import { useAddNewCoupons } from "@/hooks/useCoupons";
+import toast from "react-hot-toast";
+import Loading from "@/common/Loading";
+import { useRouter } from "next/navigation";
 
 export default function page() {
   const { data } = useGetProducts();
@@ -16,17 +23,37 @@ export default function page() {
     usageLimit: "",
   });
   const [type, setType] = useState("percent");
-  const [productId, setProductId] = useState([]);
+  const [productIds, setProductIds] = useState([]);
+
+  const [expireDate, setExpireDate] = useState(new Date());
+  const { mutateAsync, isLoading } = useAddNewCoupons();
+  const router = useRouter();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { message } = await mutateAsync({
+        ...formData,
+        type,
+        expireDate: new Date(expireDate).toISOString(),
+        productIds: productIds.map((p) => p._id),
+      });
+      toast.success(message);
+      router.push("/admin/coupons");
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
   };
 
   return (
     <div className="mb-10">
       <h1 className="mb-2 font-bold text-lg">اضافه کردن محصول</h1>
       <div className="max-w-sm">
-        <form>
+        <form onSubmit={handleSubmit}>
           <TextField
             label="کد"
             name="code"
@@ -77,11 +104,30 @@ export default function page() {
               placeholder="انتخاب محصول ..."
               instanceId="products"
               isMulti
-              onChange={setProductId}
+              onChange={setProductIds}
               options={products}
               getOptionLabel={(option) => option.title}
               getOptionValue={(option) => option._id}
             />
+          </div>
+          <div className="w-full py-3 px-4">
+            <span className="mb-2 block">تاریخ انقضا</span>
+            <DatePicker
+              inputClass="textField__input w-[22rem] py-3 px-4"
+              value={expireDate}
+              format="YYYY/MM/DD"
+              calendar={persian}
+              locale={persian_fa}
+              calendarPosition="bottom-left"
+              onChange={(date) => setExpireDate(date)}
+            />
+          </div>
+          <div className="w-full py-3 px-4">
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <button className="btn btn--primary w-full">تایید</button>
+            )}
           </div>
         </form>
       </div>

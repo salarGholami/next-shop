@@ -1,5 +1,6 @@
 import { couponListTableTHeads } from "@/constants/tableHeads";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
+import Link from "next/link";
 import { HiEye, HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 

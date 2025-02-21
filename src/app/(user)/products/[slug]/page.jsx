@@ -1,11 +1,10 @@
 import { getOneProdcutBySlug, getProducts } from "@/services/productService";
+import AddToCart from "./AddToCart";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
-import AddToCart from "./AddToCart";
-
-export const dynamic = "force-static";
+export const dynamic = "force-static"; // SSG or {cache : "force-cache"}
 export const dynamicParams = false;
 
 async function page({ params }) {

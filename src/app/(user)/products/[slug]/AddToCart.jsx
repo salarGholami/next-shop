@@ -6,19 +6,18 @@ import { useAddToCart } from "@/hooks/useCart";
 import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 function AddToCart({ product }) {
   const queryClient = useQueryClient();
   const router = useRouter();
   const { data } = useGetUser();
-
   const { isLoading, mutateAsync } = useAddToCart();
   const { user } = data || {};
 
   const addToCartHandler = async () => {
     if (!user) {
-      toast.error("لطفا ابتدا لاگین کنید");
+      toast.error("لطفا ابتدا لاگین کنید.");
       router.push("/auth");
       return;
     }
@@ -48,12 +47,11 @@ function AddToCart({ product }) {
       ) : isLoading ? (
         <Loading />
       ) : (
-        <button onClick={addToCartHandler} className="btn btn--primary">
+        <button onClick={addToCartHandler} className="btn btn--primary py-2">
           اضافه کردن به سبد خرید
         </button>
       )}
     </div>
   );
 }
-
 export default AddToCart;

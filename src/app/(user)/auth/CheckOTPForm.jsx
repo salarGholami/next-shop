@@ -1,7 +1,7 @@
 import OTPInput from "react-otp-input";
-import { CiEdit } from "react-icons/ci";
 import { HiArrowNarrowRight } from "react-icons/hi";
-
+import { CiEdit } from "react-icons/ci";
+import Loading from "@/common/Loading";
 function CheckOTPForm({
   otpResponse,
   onSubmit,
@@ -9,19 +9,19 @@ function CheckOTPForm({
   setOtp,
   onBack,
   time,
-  onResendCode,
-  isCheckingOtp,
+  onResendOtp,
+  isCechkingOtp,
 }) {
   return (
     <div>
       <button onClick={onBack} className="mb-4">
-        <HiArrowNarrowRight className="w-6 h-6 text-secondary-500 hover:text-primary-900" />
+        <HiArrowNarrowRight className="w-6 h-6 text-secondary-500" />
       </button>
       {otpResponse && (
-        <p className="flex gap-x-1">
+        <p>
           {otpResponse?.message}
           <button onClick={onBack}>
-            <CiEdit className="w-6 h-6 hover:text-primary-900" />
+            <CiEdit className="w-6 h-6 text-primary-900" />
           </button>
         </p>
       )}
@@ -29,13 +29,12 @@ function CheckOTPForm({
         {time > 0 ? (
           <p>{time} ثانیه تا ارسال مجدد کد</p>
         ) : (
-          <button className=" hover:text-primary-900" onClick={onResendCode}>
-            ارسال مجدد کد ؟!
-          </button>
+          <button onClick={onResendOtp}>ارسال مجدد کد؟</button>
         )}
       </div>
-      <form className="space-y-5" onSubmit={onSubmit}>
-        <p>کد تایید را وارد کنید .</p>
+
+      <form className="space-y-10" onSubmit={onSubmit}>
+        <p className="font-bold">کد تایید را وارد کنید</p>
         <OTPInput
           value={otp}
           onChange={setOtp}
@@ -51,8 +50,8 @@ function CheckOTPForm({
           renderInput={(props) => <input type="number" {...props} />}
         />
         <div>
-          {isCheckingOtp ? (
-            <p>loading ...</p>
+          {isCechkingOtp ? (
+            <Loading />
           ) : (
             <button type="submit" className="btn btn--primary w-full">
               تایید
@@ -63,5 +62,4 @@ function CheckOTPForm({
     </div>
   );
 }
-
 export default CheckOTPForm;

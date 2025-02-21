@@ -3,15 +3,15 @@
 import { logout } from "@/services/authServices";
 import Link from "next/link";
 
-const logoutHandler = async () => {
-  await logout();
-  document.location.href = "/";
-};
+function AdminSideBar() {
+  const logoutHandler = async () => {
+    await logout();
+    document.location.href = "/";
+  };
 
-function AdminSidebar() {
   return (
     <div>
-      <ul className="flex flex-col space-y-4">
+      <ul className="flex flex-col space-y-8">
         <li>
           <Link href="/">صفحه اصلی</Link>
         </li>
@@ -28,7 +28,7 @@ function AdminSidebar() {
           <Link href="/admin/categories">دسته بندی</Link>
         </li>
         <li>
-          <Link href="/admin/payments">سفارشات</Link>
+          <Link href="/admin/payments">سفارشات </Link>
         </li>
         <li>
           <Link href="/admin/coupons">کد تخفیف</Link>
@@ -40,5 +40,4 @@ function AdminSidebar() {
     </div>
   );
 }
-
-export default AdminSidebar;
+export default AdminSideBar;

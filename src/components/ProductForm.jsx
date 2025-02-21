@@ -1,7 +1,7 @@
-import Loading from "@/common/Loading";
-import TextField from "@/common/TextField";
 import Select from "react-select";
 import { TagsInput } from "react-tag-input-component";
+import Loading from "@/common/Loading";
+import TextField from "@/common/TextField";
 
 const productsFormData = [
   {
@@ -64,7 +64,7 @@ function ProductForm({
 }) {
   return (
     <div className="max-w-sm">
-      <form onSubmit={onSubmit}>
+      <form className="space-y-4" onSubmit={onSubmit}>
         {productsFormData.map((item) => {
           return (
             <TextField
@@ -76,28 +76,22 @@ function ProductForm({
             />
           );
         })}
-        <div className="py-3 px-4">
-          <label htmlFor="tags">تگ محصولات</label>
-          <TagsInput
-            id="tages"
-            placeHolder="عنوان تگ + Enter"
-            value={tags}
-            onChange={setTags}
-            name="tags"
-          />
+        <div>
+          <label className="mb-2 block" htmlFor="tags">
+            تگ محصولات
+          </label>
+          <TagsInput id="tags" value={tags} onChange={setTags} name="tags" />
         </div>
-        <div className="py-3 px-4">
-          <label htmlFor="category" className="mb-2">
+        <div>
+          <label htmlFor="category" className="mb-2 block">
             دسته بندی
           </label>
           <Select
-            className="text-sm"
             id="category"
-            placeholder="انتخاب ..."
             onChange={setSelectedCategory}
             options={categories}
             getOptionLabel={(option) => option.title}
-            getOptionValue={(option) => option.id}
+            getOptionValue={(option) => option._id}
             defaultValue={selectedCategory}
           />
         </div>
@@ -112,5 +106,4 @@ function ProductForm({
     </div>
   );
 }
-
 export default ProductForm;

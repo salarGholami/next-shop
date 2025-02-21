@@ -1,17 +1,17 @@
 "use client";
 
+
 import ProductForm from "@/components/ProductForm";
 import { useGetCategories } from "@/hooks/useCategories";
 import { useAddProduct } from "@/hooks/useProducts";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 function addProductPage() {
   const { isLoading, mutateAsync } = useAddProduct();
   const { data } = useGetCategories();
   const { categories } = data || {};
-
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -31,7 +31,7 @@ function addProductPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handelSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { message } = await mutateAsync({
@@ -39,8 +39,8 @@ function addProductPage() {
         tags,
         category: selectedCategory._id,
       });
-      toast.success(message);
       router.push("/admin/products");
+      toast.success(message);
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -48,9 +48,9 @@ function addProductPage() {
 
   return (
     <div className="mb-10">
-      <h1 className="mb-2 font-bold text-lg">اضافه کردن محصول</h1>
+      <h1 className="mb-4 font-bold text-xl">اضافه کردن محصول</h1>
       <ProductForm
-        onSubmit={handelSubmit}
+        onSubmit={handleSubmit}
         categories={categories}
         setSelectedCategory={setSelectedCategory}
         tags={tags}

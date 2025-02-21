@@ -18,14 +18,19 @@ function page() {
         <h1 className="text-xl font-bold mb-5">محصولات</h1>
         <Link
           href="/admin/products/add"
-          className="text-primary-900 hover:text-white hover:bg-primary-900 flex items-center gap-x-2 border-primary-900 border p-2 rounded-xl"
+          className="font-bold text-primary-900 flex items-center gap-x-2"
         >
-          <HiPlusCircle className="w-5 h-5" /> <span>اضافه کردن محصول</span>
+          <HiPlusCircle className="w-6 h-6" /> <span>اضافه کردن محصول</span>
         </Link>
       </div>
       <ProductListTable products={products} />
     </div>
   );
 }
-
 export default page;
+
+// add
+// edit (update)
+// remove (delete)
+//  /admin/products/add (add)
+// /admin/products/active()

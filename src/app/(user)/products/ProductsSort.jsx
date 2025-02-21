@@ -8,7 +8,7 @@ const sortOptions = [
   {
     id: 1,
     value: "latest",
-    label: "جدیدترین",
+    label: "جدید ترین",
   },
   {
     id: 2,
@@ -22,13 +22,11 @@ const sortOptions = [
   },
 ];
 
-function ProductSort() {
-  const [sort, setSort] = useState("");
-
+function ProductsSort() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
+  const [sort, setSort] = useState("");
   const createQueryString = useCallback(
     (name, value) => {
       const params = new URLSearchParams(searchParams);
@@ -50,16 +48,16 @@ function ProductSort() {
 
   return (
     <div>
-      <p className="font-bold mb-1.5">مرتب سازی</p>
+      <p className="font-bold mb-4">مرتب سازی</p>
       {sortOptions.map((item) => {
         return (
           <RadioInput
-            key={item.id}
             id={item.id}
+            key={item.id}
             label={item.label}
-            name="productSort"
+            name="product-sort"
             value={item.value}
-            checked={sort === item.value}
+            checked={sort == item.value}
             onChange={sortHandler}
           />
         );
@@ -67,5 +65,4 @@ function ProductSort() {
     </div>
   );
 }
-
-export default ProductSort;
+export default ProductsSort;

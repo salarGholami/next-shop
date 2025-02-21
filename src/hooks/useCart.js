@@ -6,11 +6,6 @@ export const useAddToCart = () =>
     mutationFn: addToCart,
   });
 
-// export const useRemoveFromCart = () =>
-//   useMutation({
-//     mutationFn: addToCart,
-//   });
-
 export const useDecrementFromCart = () =>
   useMutation({
     mutationFn: decrementFromCart,

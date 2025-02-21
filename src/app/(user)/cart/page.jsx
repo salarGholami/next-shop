@@ -10,9 +10,7 @@ function CartPage() {
   const { data, isLoading } = useGetUser();
   const { user, cart } = data || {};
 
-  if (isLoading) {
-    return <Loading />;
-  }
+  if (isLoading) return <Loading />;
 
   if (!user || !data)
     return (
@@ -23,6 +21,7 @@ function CartPage() {
         </Link>
       </div>
     );
+
   if (!user.cart?.products || user.cart?.products.length === 0)
     return (
       <div>
@@ -32,12 +31,13 @@ function CartPage() {
         </Link>
       </div>
     );
+
   return (
-    <div className="grid grid-cols-4 gap-4">
-      <div className="col-span-3 space-y-4">
+    <div className="grid grid-cols-4 gap-6">
+      <div className="col-span-3 space-y-5">
         {cart &&
           cart.productDetail.map((item) => {
-            return <CartItem cartItem={item} />;
+            return <CartItem key={item._id} cartItem={item} />;
           })}
       </div>
       <div className="col-span-1">
@@ -46,5 +46,4 @@ function CartPage() {
     </div>
   );
 }
-
 export default CartPage;

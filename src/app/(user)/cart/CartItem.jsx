@@ -1,22 +1,21 @@
 "use client";
-
 import { useAddToCart, useDecrementFromCart } from "@/hooks/useCart";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersianNumbers";
 import { useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
-import { HiMinus, HiOutlineTrash, HiPlus } from "react-icons/hi";
+import { toast } from "react-hot-toast";
+import { HiOutlineTrash, HiPlus, HiMinus } from "react-icons/hi";
 
 function CartItem({ cartItem }) {
-  const { isLoading, mutateAsync } = useAddToCart();
+  const { isLoading, mutateAsync: addToCarAsync } = useAddToCart();
   const { mutateAsync: decFromCartAsync } = useDecrementFromCart();
   const queryClient = useQueryClient();
 
   const addToCartHandler = async () => {
     try {
-      const { message } = await mutateAsync(cartItem._id);
+      const { message } = await addToCarAsync(cartItem._id);
       toast.success(message);
       queryClient.invalidateQueries({ queryKey: ["get-user"] });
     } catch (error) {
@@ -26,7 +25,7 @@ function CartItem({ cartItem }) {
     }
   };
 
-  const decremntHandler = async () => {
+  const decrementHandler = async () => {
     try {
       const { message } = await decFromCartAsync(cartItem._id);
       toast.success(message);
@@ -59,7 +58,7 @@ function CartItem({ cartItem }) {
                 {" "}
                 {toPersianNumbersWithComma(cartItem.offPrice)}
               </p>
-              <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-xs">
+              <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
                 {toPersianNumbers(cartItem.discount)} %
               </div>
             </div>
@@ -76,11 +75,11 @@ function CartItem({ cartItem }) {
           >
             <HiPlus className="w-4 h-4" />
           </button>
-          <button onClick={decremntHandler} className="">
+          <button onClick={decrementHandler} className="border rounded p-1">
             {cartItem.quantity > 1 ? (
-              <HiMinus className="w-6 h-6 border rounded p-1" />
+              <HiMinus className="w-4 h-4" />
             ) : (
-              <HiOutlineTrash className="text-rose-500 w-7 h-7 hover:text-white hover:bg-rose-500 p-1 border rounded" />
+              <HiOutlineTrash className=" text-rose-500 w-6 h-6" />
             )}
           </button>
         </div>
@@ -88,5 +87,4 @@ function CartItem({ cartItem }) {
     </div>
   );
 }
-
 export default CartItem;

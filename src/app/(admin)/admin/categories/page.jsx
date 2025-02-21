@@ -1,11 +1,9 @@
 "use client";
-
 import Loading from "@/common/Loading";
 import { useGetCategories } from "@/hooks/useCategories";
-// import ProductListTable from "./ProductListTable";
 import Link from "next/link";
+import CategoryListTable from "./CategoryListTable";
 import { HiPlusCircle } from "react-icons/hi";
-import CategoryListTable from "./CategoryistTable";
 
 function page() {
   const { data, isLoading } = useGetCategories();
@@ -19,14 +17,13 @@ function page() {
         <h1 className="text-xl font-bold mb-5">دسته بندی</h1>
         <Link
           href="/admin/categories/add"
-          className="text-primary-900 hover:text-white hover:bg-primary-900 flex items-center gap-x-2 border-primary-900 border p-2 rounded-xl"
+          className="font-bold text-primary-900 flex items-center gap-x-2"
         >
-          <HiPlusCircle className="w-5 h-5" /> <span>اضافه کردن دسته بندی</span>
+          <HiPlusCircle className="w-6 h-6" /> <span>اضافه کردن دسته بندی</span>
         </Link>
       </div>
       <CategoryListTable categories={categories} />
     </div>
   );
 }
-
 export default page;

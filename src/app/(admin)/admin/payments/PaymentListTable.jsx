@@ -66,13 +66,13 @@ function PaymentListTable({ payments }) {
                     <span className="badge badge--error">ناموفق</span>
                   )}
                 </td>
-                <td className="table__td">
+                <td>
                   <div>
                     <Link
                       href={`/admin/payments/${payment._id}`}
                       className="flex justify-center"
                     >
-                      <HiEye className="w-5 h-5 text-primary-900" />
+                      <HiEye className="w-6 h-6 text-primary-900" />
                     </Link>
                   </div>
                 </td>

@@ -2,18 +2,19 @@
 
 import { logout } from "@/services/authServices";
 import Link from "next/link";
-const logoutHandler = async () => {
-  await logout();
-  // localStorage.removeItem("userInfo");
-  // localStorage.removeItem("cartItems");
-  // localStorage.removeItem("token");
-  document.location.href = "/";
-};
 
 function SideBar() {
+  const logoutHandler = async () => {
+    await logout();
+    // localStorage.removeItem("userInfo");
+    // localStorage.removeItem("cartItems");
+    // localStorage.removeItem("token");
+    document.location.href = "/";
+  };
+
   return (
     <div>
-      <ul className="flex flex-col space-y-4">
+      <ul className="flex flex-col space-y-8">
         <li>
           <Link href="/">صفحه اصلی</Link>
         </li>
@@ -24,7 +25,7 @@ function SideBar() {
           <Link href="/profile/me">اطلاعات کاربری</Link>
         </li>
         <li>
-          <Link href="/profile/payments">سفارشات</Link>
+          <Link href="/profile/payments">سفارشات </Link>
         </li>
         <li>
           <button onClick={logoutHandler}>خروج از حساب کاربری</button>
@@ -33,5 +34,4 @@ function SideBar() {
     </div>
   );
 }
-
 export default SideBar;

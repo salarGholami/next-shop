@@ -1,5 +1,5 @@
 import {
-  addProduct,
+  addProdcut,
   getOneProdcutById,
   getProducts,
   removeProduct,
@@ -16,11 +16,15 @@ export const useGetProducts = () =>
   });
 
 export const useAddProduct = () => {
-  return useMutation({ mutationFn: addProduct });
+  return useMutation({ mutationFn: addProdcut });
 };
 
 export const useUpdateProduct = () => {
   return useMutation({ mutationFn: updateProduct });
+};
+
+export const useRemoveProduct = () => {
+  return useMutation({ mutationFn: removeProduct });
 };
 
 export const useGetProductById = (id) =>
@@ -30,7 +34,3 @@ export const useGetProductById = (id) =>
     retry: false,
     refetchOnWindowFocus: true,
   });
-
-export const useRemoveProduct = () => {
-  return useMutation({ mutationFn: removeProduct });
-};

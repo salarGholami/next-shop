@@ -11,14 +11,13 @@ export const userPaymentTHeads = [
     id: 3,
     label: "توضیحات",
   },
-
   {
     id: 4,
     label: "محصولات",
   },
   {
     id: 5,
-    label: "مبلغ سفارش",
+    label: "مبلغ",
   },
   {
     id: 6,

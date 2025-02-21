@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import SendOTPFrom from "./SendOTPFrom";
 import { toast } from "react-hot-toast";
@@ -15,7 +14,6 @@ function AuthPage() {
   const [step, setStep] = useState(1);
   const [time, setTime] = useState(RESEND_TIME);
   const router = useRouter();
-
   const {
     data: otpResponse,
     error,
@@ -24,7 +22,6 @@ function AuthPage() {
   } = useMutation({
     mutationFn: getOtp,
   });
-
   const { mutateAsync: mutateCheckOtp, isLoading: isCechkingOtp } = useMutation(
     {
       mutationFn: checkOtp,
@@ -58,7 +55,8 @@ function AuthPage() {
       } else {
         router.push("/complete-profile");
       }
-
+      // push -> /complete-profile
+      // isActive -> / : /complete-profile
     } catch (error) {
       toast.error(error?.response?.data?.message);
     }
@@ -108,3 +106,12 @@ function AuthPage() {
 }
 export default AuthPage;
 
+//? TASK #1 : auth user using OTP :
+
+//1. form -> getOTP -> input + button => phoneNumber => send OTP
+// input => TextField
+// 2. form -> checkOTP ->
+// request => ?
+//* 1. axios (useState + useEffect),
+//* 2. useFetch (data, loading, error),
+//* 3. react-query ->  redux alternative (state management) + fetch , mutate !

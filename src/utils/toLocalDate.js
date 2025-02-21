@@ -1,11 +1,9 @@
 export function toLocalDateString(date) {
   const options = {
+    // weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
-    // weekday: "long",
-    // hour: "numeric",
-    // second: "numeric",
   };
 
   return new Date(date).toLocaleDateString("fa-IR", options);

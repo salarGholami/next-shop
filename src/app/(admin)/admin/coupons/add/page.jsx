@@ -1,5 +1,4 @@
 "use client";
-
 import { useGetProducts } from "@/hooks/useProducts";
 import { useState } from "react";
 import { useAddNewCoupon } from "@/hooks/useCoupons";

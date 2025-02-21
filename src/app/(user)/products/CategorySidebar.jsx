@@ -1,13 +1,12 @@
 import ProductsFilter from "./ProductsFilter";
-import ProductSort from "./ProductSort";
+import ProductsSort from "./ProductsSort";
 
 function CategorySidebar({ categories }) {
   return (
-    <div className="col-span-1 space-y-4">
+    <div className="col-span-1">
       <ProductsFilter categories={categories} />
-      <ProductSort />
+      <ProductsSort />
     </div>
   );
 }
-
 export default CategorySidebar;

@@ -1,10 +1,4 @@
-"use client";
-
-import { useParams } from "next/navigation";
-
 function page() {
-  const { id } = useParams();
-  return <div>page</div>;
+  return <div>اطلاعات کد تخفیف</div>;
 }
-
 export default page;

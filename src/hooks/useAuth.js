@@ -3,16 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 
 export const useGetUser = () =>
   useQuery({
-    queryFn: getUserProfile,
     queryKey: ["get-user"],
+    queryFn: getUserProfile,
     retry: false,
     refetchOnWindowFocus: true,
   });
 
 export const useGetUsers = () =>
   useQuery({
-    queryFn: getAllUsers,
     queryKey: ["get-users"],
+    queryFn: getAllUsers,
     retry: false,
     refetchOnWindowFocus: true,
   });

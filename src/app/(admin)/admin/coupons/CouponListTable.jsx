@@ -1,10 +1,26 @@
 import { couponListTableTHeads } from "@/constants/tableHeads";
+import { useRemoveCoupon } from "@/hooks/useCoupons";
 import { toLocalDateStringShort } from "@/utils/toLocalDate";
+import { useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 import { HiEye, HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 function CouponListTable({ coupons }) {
+  const { mutateAsync } = useRemoveCoupon();
+  const queryClient = useQueryClient();
+
+  const removeCouponHandler = async (id) => {
+    try {
+      const { message } = await mutateAsync(id);
+      toast.success(message);
+      queryClient.invalidateQueries({ queryKey: ["get-coupons"] });
+    } catch (error) {
+      toast.error(error?.respone?.data?.message);
+    }
+  };
+
   return (
     <div className="shadow-sm overflow-auto my-8">
       <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
@@ -68,5 +84,4 @@ function CouponListTable({ coupons }) {
     </div>
   );
 }
-
 export default CouponListTable;

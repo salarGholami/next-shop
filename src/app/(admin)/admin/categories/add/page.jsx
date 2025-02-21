@@ -1,10 +1,10 @@
 "use client";
 
-import CategoryForm from "@/components/CategoryForm";
-import { useAddCategory } from "@/hooks/useCategories";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { useAddCategory } from "@/hooks/useCategories";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import CategoryForm from "@/components/CategoryForm";
 
 function page() {
   const [category, setCategory] = useState({
@@ -32,10 +32,9 @@ function page() {
       toast.error(error?.response?.data?.message);
     }
   };
-
   return (
     <div>
-      <h1 className="mb-6 font-bold text-lg">افزودن دسته بندی جدید</h1>
+      <h1 className="mb-6 font-bold text-xl">افزودن دسته بندی جدید</h1>
       <CategoryForm
         category={category}
         handleChange={handleChange}
@@ -47,5 +46,4 @@ function page() {
     </div>
   );
 }
-
 export default page;

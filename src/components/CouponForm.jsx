@@ -98,5 +98,4 @@ function CouponForm({
     </div>
   );
 }
-
 export default CouponForm;

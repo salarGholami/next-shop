@@ -1,7 +1,3 @@
-function HomePage() {
-  return (
-    <div>صفحه خانه</div>
-  )
+export default function Home() {
+  return <main className="text-3xl">صفحه خانه</main>;
 }
-
-export default HomePage

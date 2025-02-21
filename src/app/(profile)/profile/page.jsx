@@ -9,19 +9,22 @@ import Link from "next/link";
 function Profile() {
   const { data, isLoading } = useGetUser();
   const { user, payments } = data || {};
-
   if (isLoading) return <Loading />;
-
   return (
-    <div>
-      <h1>{user.name} خوش آمدی!</h1>
+    <div className="py-4">
+      <h1 className="mb-4 text-xl">
+        سلام ! <span className="font-bold">{user.name}</span> خوش آمدی!
+      </h1>
       <p>
-        <span>تاریخ پیوستن : {toLocalDateString(user.createdAt)}</span>
+        <span>تاریخ پیوستن:</span>
+        <span> {toLocalDateString(user.createdAt)} </span>
       </p>
-      <div className="border rounded-xl p-4 mt-8">
-        <div className="flex items-center justify-between">
-          <h2 className="font-bold">آخرین سفارشات کاربر</h2>
-          <Link className="text-primary-900" href="/profile/payments">مشاهده همه سفارشات</Link>
+      <div className="border rounded-xl  mt-8">
+        <div className="p-4 flex items-center justify-between">
+          <h2 className="font-bold text-xl">آخرین سفارشات کاربر</h2>
+          <Link className="text-primary-900 font-bold" href="/profile/payments">
+            مشاهده همه سفارشات
+          </Link>
         </div>
         <PaymentTable
           payments={payments

@@ -1,4 +1,8 @@
-import { addNewCoupon, getAllCoupons } from "@/services/couponService";
+import {
+  addNewCoupon,
+  getAllCoupons,
+  getOneCoupon,
+} from "@/services/couponService";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export const useGetCoupons = () =>
@@ -9,4 +13,12 @@ export const useGetCoupons = () =>
     refetchOnWindowFocus: true,
   });
 
-export const useAddNewCoupons = () => useMutation({ mutationFn: addNewCoupon });
+export const useAddNewCoupon = () => useMutation({ mutationFn: addNewCoupon });
+
+export const useGetOneCoupon = (id) =>
+  useQuery({
+    queryKey: ["get-coupon", id],
+    queryFn: () => getOneCoupon(id),
+    retry: false,
+    refetchOnWindowFocus: true,
+  });

@@ -5,8 +5,6 @@ import { HiEye, HiTrash } from "react-icons/hi";
 import { RiEdit2Line } from "react-icons/ri";
 
 function CouponListTable({ coupons }) {
-    console.log(coupons);
-    
   return (
     <div className="shadow-sm overflow-auto my-8">
       <table className="border-collapse table-auto w-full min-w-[800px] text-sm">
@@ -54,7 +52,7 @@ function CouponListTable({ coupons }) {
                     <Link href={`/admin/coupons/${coupon._id}`}>
                       <HiEye className="text-primary-900 w-6 h-6" />
                     </Link>
-                    <button>
+                    <button onClick={() => removeCouponHandler(coupon._id)}>
                       <HiTrash className="text-rose-600 w-6 h-6" />
                     </button>
                     <Link href={`/admin/coupons/edit/${coupon._id}`}>
